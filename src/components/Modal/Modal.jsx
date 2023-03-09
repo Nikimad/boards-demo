@@ -5,7 +5,7 @@ const modalEl = document.getElementById("modal");
 
 const Modal = ({ isOpen, onClose, children }) => {
   const modalContent = !isOpen ? null : (
-    <div className="modal">
+    <div className="modal" tabIndex={0}>
       <div className="modal__content">
         <button onClick={onClose}>Close modal</button>
         {children}
