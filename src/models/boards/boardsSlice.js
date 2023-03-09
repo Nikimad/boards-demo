@@ -4,9 +4,19 @@ import { initialState } from "./constants";
 const boardsSlice = createSlice({
   name: "boards",
   initialState,
-  reducers: {},
+  reducers: {
+    addBoard(state, {payload}) {
+      state.boards = [
+        {
+          title: payload,
+          id: Date.now(),
+        },
+        ...state.boards,
+      ];
+    }
+  },
 });
 
-export const {} = boardsSlice.actions;
+export const { addBoard } = boardsSlice.actions;
 
 export default boardsSlice.reducer;
