@@ -6,23 +6,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+    background-color: $violet-500;
     animation: appear 0.3s;
 }
 
 .modal__content {
     background-color: #000;
     border-radius: 10px;
-    animation: moveModal 0.3s;
+    transform: translateY(-100vh);
+    transition: 0.3s;
     padding: 1em;
 }
 
-@keyframes moveModal {
-    from {
-        transform: translateY(-100vh);
-    } to {
-        transform: translateY(0);
-    }
+.modal__content[data-visible="true"] {
+    transform: translateY(0);
 }
 
 @keyframes appear {

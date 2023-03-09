@@ -16,15 +16,14 @@ const AsideContainer = () => {
     setValue("");
     handleClose();
   };
-  const [isModalOpen, handleOpen, handleClose] = useModal();
+  const [isModalOpen, toggleModal] = useModal();
   const handleChange = (e) => setValue(e.target.value);
 
   return (
     <Aside
       boards={boards}
       isModalOpen={isModalOpen}
-      onOpenModal={handleOpen}
-      onCloseModal={handleClose}
+      toggleModal={toggleModal}
       onAddBoard={handleAddBoard}
       onChange={handleChange}
       value={value}

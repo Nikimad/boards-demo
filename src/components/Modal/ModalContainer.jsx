@@ -1,20 +1,14 @@
-import { useCallback, useEffect } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
 
-const ModalContainer = ({ isOpen, onClose, children }) => {
-  const handleEscape = useCallback(({ key }) => {
-    if (key === "Escape") return onClose();
-  }, [onClose]);
+const ModalContainer = (props) => {
+    const [isModalContentVisible, setIsModalContentVisible] = useState(false);
+    const handleModalAperranceEnd = () => setIsModalContentVisible(true);
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [handleEscape]);
-
-  return <Modal isOpen={isOpen} onClose={onClose} children={children} />
+    return <Modal { ...props } 
+      onModalAperranceEnd={handleModalAperranceEnd}
+      isModalContentVisible={isModalContentVisible}
+    />;
 };
 
 export default ModalContainer;
