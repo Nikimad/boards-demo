@@ -1,0 +1,7 @@
+@use "/src/styles/variables.scss" as *;
+
+.aside {
+    height: 100%;
+    background-color: $violet-400;
+    padding: 1em;
+}
