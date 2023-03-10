@@ -1,25 +1,48 @@
 @use "/src/styles/variables.scss" as *;
 
+
 .modal {
     position: fixed;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $violet-500;
-    animation: appear 0.3s;
-}
 
-.modal__content {
-    background-color: #000;
-    border-radius: 10px;
-    transform: translateY(-100vh);
-    transition: 0.3s;
-    padding: 1em;
-}
+    &__backdrop {
+        display: block;
+        position: absolute;
+        content: "";
+        inset: 0;
+        background-color: $shadow;
+        z-index: -1;
+    }
 
-.modal__content[data-visible="true"] {
-    transform: translateY(0);
+    &__content {
+        background-color: $violet-400;
+        border-radius: 10px;
+        transition: 0.2s;
+        padding: 1em;
+    }
+
+    &[data-animation="redy"] {
+        .modal__backdrop {
+            animation: appear 0.2s;
+        }
+
+        .modal__content {
+            transform: translateY(-100vh);
+        }
+    }
+
+    &[data-animation="out"] {
+        .modal__backdrop {
+            animation: disappear 0.3s;
+        }
+
+        .modal__content {
+            transform: translateY(100vh);
+        }
+    }
 }
 
 @keyframes appear {
@@ -27,5 +50,13 @@
         opacity: 0;
     } to {
         opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
     }
 }

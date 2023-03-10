@@ -3,11 +3,12 @@ import "./Modal.scss";
 
 const modalEl = document.getElementById("modal");
 
-const Modal = ({ isOpen, onClose, children, onModalAperranceEnd, isModalContentVisible}) => (
+const Modal = ({ isOpen, onClose, children, onModalAperranceEnd, animtionSatus}) => (
   createPortal(
     !isOpen ? null : (
-      <div onAnimationEnd={onModalAperranceEnd} className="modal" tabIndex={0}>
-        <div className="modal__content" data-visible={isModalContentVisible}>
+      <div className="modal" data-animation={animtionSatus}>
+        <div onClick={onClose} onAnimationEnd={onModalAperranceEnd} className="modal__backdrop"></div>
+        <div className="modal__content">
           <button onClick={onClose}>Close modal</button>
           {children}
         </div>
