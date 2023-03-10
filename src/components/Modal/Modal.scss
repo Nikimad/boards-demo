@@ -7,15 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $shadow;
 
-    &__backdrop {
-        display: block;
-        position: absolute;
-        content: "";
-        inset: 0;
-        background-color: $shadow;
-        z-index: -1;
-    }
 
     &__content {
         background-color: $violet-400;
@@ -24,23 +17,19 @@
         padding: 1em;
     }
 
-    &[data-animation="redy"] {
-        .modal__backdrop {
-            animation: appear 0.2s;
-        }
+    &[data-status="show"] {
+        animation: appear 0.3s;
 
         .modal__content {
-            transform: translateY(-100vh);
+            animation: in 0.3s;
         }
     }
 
-    &[data-animation="out"] {
-        .modal__backdrop {
-            animation: disappear 0.3s;
-        }
+    &[data-status="hidden"] {
+        animation: disappear 0.3s;
 
         .modal__content {
-            transform: translateY(100vh);
+            animation: out 0.3s;
         }
     }
 }
@@ -58,5 +47,21 @@
         opacity: 1;
     } to {
         opacity: 0;
+    }
+}
+
+@keyframes in {
+    from {
+        transform: translateY(-100vh);
+    } to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes out {
+    from {
+        transform: translateY(0);
+    } to {
+        transform: translateY(100vh);
     }
 }

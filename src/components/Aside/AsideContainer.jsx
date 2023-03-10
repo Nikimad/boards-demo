@@ -8,22 +8,24 @@ import Aside from "./Aside";
 
 const AsideContainer = () => {
   const [value, setValue] = useState("");
+  const [modalSatus, hideModal, showModal, closeModal] = useModal();
   const boards = useSelector(selectBoards);
   const dispatchAddBoard = useAction(addBoard(value));
   const handleAddBoard = (e) => {
     e.preventDefault();
     dispatchAddBoard();
     setValue("");
-    handleClose();
+    hideModal();
   };
-  const [isModalOpen, toggleModal] = useModal();
   const handleChange = (e) => setValue(e.target.value);
 
   return (
     <Aside
       boards={boards}
-      isModalOpen={isModalOpen}
-      toggleModal={toggleModal}
+      modalSatus={modalSatus}
+      showModal={showModal}
+      hideModal={hideModal}
+      closeModal={closeModal}
       onAddBoard={handleAddBoard}
       onChange={handleChange}
       value={value}

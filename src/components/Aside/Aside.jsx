@@ -3,8 +3,10 @@ import Modal from "../Modal";
 
 const Aside = ({
   boards,
-  isModalOpen,
-  toggleModal,
+  modalSatus,
+  showModal,
+  hideModal,
+  closeModal,
   onAddBoard,
   onChange,
   value
@@ -13,8 +15,8 @@ const Aside = ({
     <div>
       {boards.map((board) => <p key={board.id}>{board.title}</p>)}
     </div>
-    <button onClick={toggleModal}>+ Create New Board</button>
-    <Modal isOpen={isModalOpen} onClose={toggleModal}>
+    <button onClick={showModal}>+ Create New Board</button>
+    <Modal status={modalSatus} onHide={hideModal} onClose={closeModal}>
     <form onSubmit={onAddBoard}>
         <label>
           <input type="text" onChange={onChange} value={value} />

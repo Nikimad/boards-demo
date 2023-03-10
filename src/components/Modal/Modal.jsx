@@ -3,17 +3,17 @@ import "./Modal.scss";
 
 const modalEl = document.getElementById("modal");
 
-const Modal = ({ isOpen, onClose, children, onModalAperranceEnd, animtionSatus}) => (
+const Modal = ({ status, onHide, onContentClick, children }) =>
   createPortal(
-    !isOpen ? null : (
-      <div className="modal" data-animation={animtionSatus}>
-        <div onClick={onClose} onAnimationEnd={onModalAperranceEnd} className="modal__backdrop"></div>
-        <div className="modal__content">
-          <button onClick={onClose}>Close modal</button>
+    status === "close" ? null : (
+      <div className="modal" data-status={status} onClick={onHide}>
+        <div className="modal__content" onClick={onContentClick}>
+          <button onClick={onHide}>Close modal</button>
           {children}
         </div>
       </div>
-    ), modalEl)
-);
+    ),
+    modalEl
+  );
 
 export default Modal;
